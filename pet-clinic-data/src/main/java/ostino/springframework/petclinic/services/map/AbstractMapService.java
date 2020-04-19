@@ -1,10 +1,12 @@
 package ostino.springframework.petclinic.services.map;
 
+import ostino.springframework.petclinic.models.BaseEntity;
+
 import java.util.*;
 
-public abstract class AbstractMapService<T, ID> {
+public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> {
 
-    private Map<ID, T> map = new HashMap<>();
+    private Map<Long, T> map = new HashMap<>();
 
     Set<T> findAll() {
         return new HashSet<>(map.values());
@@ -14,8 +16,17 @@ public abstract class AbstractMapService<T, ID> {
         return map.get(id);
     }
 
-    T save(ID id, T object) {
-        return map.put(id, object);
+    T save(T object) {
+        T savedObject = null;
+        if (object != null) {
+            if (object.getId() == null) {
+                object.setId(nextId());
+            }
+            savedObject = map.put(object.getId(), object);
+        } else {
+            throw new IllegalArgumentException("Failed to save entity. Object is null");
+        }
+        return savedObject;
     }
 
     void deleteById(ID id) {
@@ -26,7 +37,11 @@ public abstract class AbstractMapService<T, ID> {
         map.entrySet().removeIf(entry -> entry.getValue().equals(object));
     }
 
-    public Map<ID, T> getMap() {
+    public Map<Long, T> getMap() {
         return Collections.unmodifiableMap(map);
+    }
+
+    private Long nextId() {
+        return map.keySet().isEmpty() ? 1L : Collections.max(map.keySet()) + 1;
     }
 }
