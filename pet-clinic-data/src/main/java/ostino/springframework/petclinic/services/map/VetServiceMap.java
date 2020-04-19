@@ -1,10 +1,12 @@
 package ostino.springframework.petclinic.services.map;
 
+import org.springframework.stereotype.Service;
 import ostino.springframework.petclinic.models.Vet;
 import ostino.springframework.petclinic.services.VetService;
 
 import java.util.Set;
 
+@Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
 
     @Override

@@ -1,5 +1,6 @@
 package ostino.springframework.petclinic.services.map;
 
+import org.springframework.stereotype.Service;
 import ostino.springframework.petclinic.models.Owner;
 import ostino.springframework.petclinic.services.OwnerService;
 
@@ -7,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
     @Override
