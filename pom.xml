@@ -14,7 +14,7 @@
     </parent>
     <groupId>ostino.springframework</groupId>
     <artifactId>pet-clinic</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>pet-clinic</name>
     <description>Pet Clinic</description>
 
@@ -42,7 +42,6 @@
 
     <scm>
         <developerConnection>scm:git:git@github.com:OleksandrStino/pet-clinic.git</developerConnection>
-      <tag>pet-clinic-0.0.1</tag>
-  </scm>
+    </scm>
 
 </project>
